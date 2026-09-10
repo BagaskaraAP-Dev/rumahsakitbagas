@@ -1,0 +1,24 @@
+'use client';
+import { ArrowDown, ArrowUpRight, ArrowRight, Heart, HeartPulse, ShieldCheck, Stethoscope, Building2, Plus, RotateCcw, Move, Pause, Play } from 'lucide-react';
+import HospitalScene from './hospital-scene';
+import CareJourney from './care-journey';
+import { useState } from 'react';
+
+export default function Home() {
+ const [view,setView]=useState(0);
+ const [paused,setPaused]=useState(false);
+ return <>
+  <a className="skip-link" href="#main">Lewati ke konten</a>
+  <div className="topbar"><span>Selamat datang di ruang untuk pulih.</span><span>Website konsep <span className="tiny-dot"/> Data & layanan contoh</span></div>
+  <header className="header wrap"><a className="brand" href="#" aria-label="Rumah Sakit Bagas, beranda"><span className="brand-icon"><Plus size={29} strokeWidth={3}/></span><span>rs bagas<span className="brand-sub">RUMAH SAKIT</span></span></a><nav aria-label="Navigasi utama"><a href="#layanan">Layanan</a><a href="#dokter">Dokter kami</a><a href="#jelajah">Jelajah rumah sakit <span className="nav-3d">3D</span></a></nav><a className="button button-dark header-cta" href="#janji-temu">Buat janji temu <ArrowUpRight size={17}/></a></header>
+  <main id="main">
+   <section className="hero wrap" aria-labelledby="hero-title">
+    <div className="hero-copy"><div className="eyebrow"><span className="pulse-dot"/> KESEHATAN ANDA, PRIORITAS KAMI</div><h1 id="hero-title">Lebih dekat.<br/>Lebih peduli.<br/><span>Lebih sehat.</span></h1><p>Ruang perawatan yang nyaman, dengan perhatian yang hadir di setiap langkah Anda.</p><div className="hero-actions"><a href="#dokter" className="button button-blue">Temukan dokter <ArrowUpRight size={19}/></a><a href="#jelajah" className="text-link">Jelajahi RS Bagas <ArrowDown size={17}/></a></div><div className="hero-note"><span className="note-icon"><Heart size={19}/></span><span>Untuk Anda dan orang-orang<br/><strong>yang paling berarti.</strong></span></div></div>
+    <div id="jelajah" className="scene-card"><div className="scene-heading"><span><span className="tiny-dot blue"/> KENALI RUANG KAMI</span><span className="scene-badge">TUR INTERAKTIF 3D</span></div><div className="scene-watermark" aria-hidden="true">rs bagas</div><HospitalScene view={view} paused={paused} onInteract={()=>setPaused(true)}/><div className="scene-caption"><span className="location-dot"><Building2 size={18}/></span><span><strong>Gedung utama</strong><small>Ruang nyaman untuk setiap perjalanan pulih.</small></span></div><div className="scene-controls"><span><Move size={14}/> Geser untuk memutar</span><div className="scene-buttons"><button aria-label={paused?'Mulai putaran otomatis':'Jeda putaran otomatis'} aria-pressed={paused} onClick={()=>setPaused(v=>!v)}>{paused?<Play size={15}/>:<Pause size={15}/>}</button><button aria-label="Kembalikan sudut pandang bangunan" onClick={()=>setView(v=>v+1)}><RotateCcw size={17}/></button></div></div><div className="floating-care"><ShieldCheck size={18}/><span>Dirancang untuk<br/><strong>kenyamanan Anda</strong></span></div></div>
+   </section>
+   <section className="care-strip wrap" aria-label="Pendekatan pelayanan"><div><span className="strip-number">01</span><span>Perawatan yang<br/><strong>berpusat pada Anda</strong></span></div><div><span className="strip-number">02</span><span>Tim medis dengan<br/><strong>perhatian personal</strong></span></div><div><span className="strip-number">03</span><span>Ruang yang tenang<br/><strong>untuk pemulihan</strong></span></div><a href="#layanan">Kenali layanan kami <ArrowDown size={18}/></a></section>
+   <section className="section wrap" id="layanan"><div className="section-head"><div><div className="eyebrow">LAYANAN KAMI</div><h2>Perawatan untuk setiap<br/><span>tahap kehidupan.</span></h2></div><p>Temukan layanan yang sesuai dengan<br className="desktop-only"/> kebutuhan Anda dan keluarga.</p></div><div className="services-grid">{[{name:'Poliklinik umum',desc:'Konsultasi awal dan pemeriksaan kesehatan rutin.',icon:Stethoscope,color:'blue'},{name:'Kesehatan jantung',desc:'Konsultasi dengan dokter spesialis jantung.',icon:HeartPulse,color:'green'},{name:'Ibu & anak',desc:'Pendampingan kesehatan untuk ibu dan si kecil.',icon:Heart,color:'peach'}].map(s=><a href="#dokter" className={`service-card ${s.color}`} key={s.name}><span className="service-icon"><s.icon size={29} strokeWidth={1.6}/></span><span className="service-arrow"><ArrowUpRight size={21}/></span><h3>{s.name}</h3><p>{s.desc}</p><span className="service-link">Lihat dokter <ArrowRight size={16}/></span></a>)}</div></section>
+   <CareJourney />
+  </main><footer className="footer wrap"><a className="brand" href="#"><span className="brand-icon"><Plus size={24} strokeWidth={3}/></span><span>rs bagas</span></a><p>Website konsep rumah sakit. Seluruh profil dan layanan merupakan contoh.</p><span>© {new Date().getFullYear()} Rumah Sakit Bagas</span></footer>
+ </>;
+}
