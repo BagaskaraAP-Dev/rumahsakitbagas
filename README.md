@@ -1,5 +1,7 @@
 # Rumah Sakit Bagas (RS Bagas) — Website Rumah Sakit 3D Interaktif
 
+[![CI](https://github.com/BagaskaraAP-Dev/rumahsakitbagas/actions/workflows/ci.yml/badge.svg)](https://github.com/BagaskaraAP-Dev/rumahsakitbagas/actions/workflows/ci.yml)
+
 Website konsep modern untuk **Rumah Sakit Bagas** yang menggabungkan visualisasi arsitektur gedung 3D interaktif menggunakan Three.js, katalog dokter spesialis, serta alur simulasi pendaftaran janji temu medis secara online.
 
 Dibuat & dikembangkan oleh: **Bagaskara Amukti Palapa** ([@BagaskaraAP-Dev](https://github.com/BagaskaraAP-Dev))
@@ -57,13 +59,17 @@ Dibuat & dikembangkan oleh: **Bagaskara Amukti Palapa** ([@BagaskaraAP-Dev](http
 
 ## 🧪 Pemeriksaan & Testing
 
+GitHub Actions menjalankan tes validasi booking, build produksi, dan pemeriksaan TypeScript pada setiap push atau pull request ke `main`. Hasilnya bisa dilihat lewat badge CI di atas atau tab **Actions**. Workflow menggunakan Node.js 22 dan `npm ci` agar versi dependensi mengikuti lockfile.
+
+`npm run lint` tersedia sebagai pemeriksaan terpisah. Lint belum menjadi syarat CI karena masih ada temuan pada kode yang sudah ada, termasuk komponen UI starter.
+
 - **Cek tipe TypeScript**:
   ```bash
-  npx tsc --noEmit
+  npm run typecheck
   ```
 - **Jalankan Unit Test Simulasi Booking**:
   ```bash
-  node --experimental-strip-types --test tests/booking.test.ts
+  npm test
   ```
 - **Build versi produksi**:
   ```bash
